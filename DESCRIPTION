@@ -1,11 +1,18 @@
 Package: SeuratToGO
 Type: Package
-Title: What the Package Does (Title Case)
+Title: A package to prepare post-Seurat analysis dataframes for DAVID Gene 
+  Ontology (GO) analysis
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Author: Dien Nguyen
+Maintainer: Dien Nguyen <dien.nguyen@mail.utoronto.ca>
+Description: The package processes single-cell RNA sequencing dataframes that 
+  have undergone clustering by Seurat (R package), and clusters have been 
+  labelled. This package reformats post-Seurat dataframes to go through GO
+  analysis using DAVID (Database for Annotation, Visualization and Integrated 
+  Discovery).
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
+Depends: R (>= 3.1.0)
+RoxygenNote: 7.2.3
+Roxygen: list(markdown = TRUE)
