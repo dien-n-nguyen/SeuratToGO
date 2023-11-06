@@ -10,9 +10,14 @@ Description: The package processes single-cell RNA sequencing dataframes that
   labelled. This package reformats post-Seurat dataframes to go through GO
   analysis using DAVID (Database for Annotation, Visualization and Integrated 
   Discovery).
+Imports:
+    dplyr,
+    ggplot2
+Suggests:
+    testthat
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
-Depends: R (>= 3.1.0)
+Depends: R (>= 3.5.0)
 RoxygenNote: 7.2.3
 Roxygen: list(markdown = TRUE)
