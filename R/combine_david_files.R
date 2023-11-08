@@ -15,7 +15,6 @@ combine_david_files <- function(path_to_folder) {
   david_list <- list()
   for (i in 1:length(file_list)){
     file_path <- paste0(path_to_folder, file_list[[i]])
-    print(file_path)
     curr_df <- read.table(file_path, header = TRUE, sep = "\t")
     david_list[[i]] <- curr_df
   }
