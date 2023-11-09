@@ -14,18 +14,64 @@ knitr::opts_chunk$set(
 )
 ```
 
-First, you need to load the package before using any of its functions.
+First, you need to load the package before using any of its functions. You also
+need to install (if you have not) and load the package "magrittr".
 ```{r setup}
 library(SeuratToGO)
+library(magrittr)
 ```
 
-pbmc_markers is a data frame that contains the genes identified in each cluster
-and other associated values. It is produced by the FindAllMarkers() function in
+`pbmc_markers` is a data frame that contains the genes identified in each cluster and other associated values and is included in this package. It is produced by the FindAllMarkers() function in
 the Seurat package. You can do generate this data by yourself by following the
 tutorial on: https://satijalab.org/seurat/articles/pbmc3k_tutorial.html.
 ```{r}
-separate_clusters(pbmc_markers)
+# separate the clusters
+separated_df <- separate_clusters(pbmc_markers)
+head(separated_df)
 ```
 
+After running this function, you will see a file called `genes_list.txt` in your current working directory. This file can be uploaded onto the DAVID website for GO analysis, and the output can be downloaded as separate text files, one for each cluster. 
+
+The outputs files can be downloaded from [here](https://github.com/dien-n-nguyen/SeuratToGO/blob/master/inst/extdata/david.zip). Extract the files into a folder in your working directory and make note of the path.
+```{r}
+# replace the argument to the path to your DAVID output folder
+david_combined <- combine_david_files("./david/")
+
+# DAVID output columns for each cluster
+colnames(david_combined[[1]])
+```
+
+For further understanding of DAVID output files, you can access page 9 of the DAVID tutorial [here](https://david.ncifcrf.gov/helps/tutorial.pdf).
+ 
+The `get_top_processes` function assumes that you have been processing data from cluster 0, 1, 2 ... to n, with no missing clusters, and these clusters are arranged in ordered in the `david_combined` list.
+
+```{r}
+# find the top 5 processes in cluster 0
+cluster0_top5 <- get_top_processes(combined_list = david_combined,
+                                   cluster = 0,
+                                   benjamini = 0.05,
+                                   top_n = 5)
+head(cluster0_top5)
+```
+
+To get all the top processes in each function into one data frame, we can use the `get_all_top_processes` function. Each row in the data frame is a process and each column is a cluster. Each cell contains the p-value of a process in a cluster. So, each column should have only 5 cells with values and the rest are NA.
+```{r}
+top_all <- get_all_top_processes(combined_list = david_combined,
+                                 benjamini = 0.05,
+                                 top_n = 5)
+head(top_all)
+```
+
+Finally, we can visualize the top processes using a simple heat map. The `top_processes_heatmap` function takes the log2 value of each P-value, so that variations are more distinguishable, since differences in P-values can be extremely small. 
+```{r}
+top_plot <- top_processes_heatmap(top_processes_df = top_all)
+
+# save the plot into your working directory
+# you can adjust the width and height to fit different size plots
+ggplot2::ggsave(filename = "top_processes_heatmap.png", 
+                plot = top_plot,
+                width = 12,
+                height = 6)
+```
 
 
