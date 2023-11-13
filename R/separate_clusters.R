@@ -28,11 +28,27 @@ get_cluster_names <- function(num_clusters) {
 #' @export
 separate_clusters <- function(markers) {
   markers_df <- data.frame(markers)
+
+  # check that columns "cluster" and "gene" exist
+  desired_columns = c("cluster", "gene")
+  if (all(desired_columns %in% colnames(markers_df))) {
+    print("All needed columns exist.")
+  } else {
+    stop("Error: Check that the data frame provided has cluster and gene
+         columns.")
+  }
+
   markers_df <- markers_df[, c("cluster", "gene")]
 
   # get cluster numbers
   all_cluster_numbers <- unique(markers_df$cluster)
   num_clusters <- length(all_cluster_numbers)
+
+  # check that all clusters from 0 to num_clusters exist
+  if (all(all_cluster_numbers == 0:(num_clusters - 1)) == FALSE) {
+    stop("Error: All clusters from 0 to n - 1 must exist.")
+  }
+
   clusters <- list()
 
   # get vector of column names, e.g. c("Cluster 0", "Cluster 1", etc...)
