@@ -26,6 +26,8 @@ get_cluster_names <- function(num_clusters) {
 #' @return A data frame of gene markets with cluster number as column name.
 #'
 #' @export
+#' @import magrittr
+#' @import dplyr
 separate_clusters <- function(markers) {
   markers_df <- data.frame(markers)
 
@@ -56,7 +58,8 @@ separate_clusters <- function(markers) {
 
   # extract the genes in each cluster and store them in the list
   for (i in 1:length(all_cluster_numbers)) {
-    genes <- markers_df %>% dplyr::filter(cluster == (i - 1)) %>% dplyr::select(gene)
+    genes <- markers_df %>% dplyr::filter(cluster == (i - 1))%>%
+      dplyr::select(gene)
     clusters[[i]] <- genes$gene
   }
   cluster_eq_len <- list()
