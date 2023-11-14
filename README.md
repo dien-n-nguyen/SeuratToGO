@@ -57,36 +57,6 @@ The author of the package is Dien Nguyen. The author wrote all 5 functions menti
 
  - Wickham H, François R, Henry L, Müller K, Vaughan D. 2023. dplyr: A Grammar of Data Manipulation. https://dplyr.tidyverse.org, https://github.com/tidyverse/dplyr.
 
+## Acknowledgements
 
-## Example
-
-This is a basic example which shows you how to solve a common problem:
-
-``` r
-library(SeuratToGO)
-## basic example code
-```
-
-What is special about using `README.Rmd` instead of just `README.md`?
-You can include R chunks like so:
-
-``` r
-summary(cars)
-#>      speed           dist       
-#>  Min.   : 4.0   Min.   :  2.00  
-#>  1st Qu.:12.0   1st Qu.: 26.00  
-#>  Median :15.0   Median : 36.00  
-#>  Mean   :15.4   Mean   : 42.98  
-#>  3rd Qu.:19.0   3rd Qu.: 56.00  
-#>  Max.   :25.0   Max.   :120.00
-```
-
-You’ll still need to render `README.Rmd` regularly, to keep `README.md`
-up-to-date. `devtools::build_readme()` is handy for this.
-
-You can also embed plots, for example:
-
-<img src="man/figures/README-pressure-1.png" width="100%" />
-
-In that case, don’t forget to commit and push the resulting figure
-files, so they display on GitHub and CRAN.
+This package was developed as part of an assessment for 2019-2023 BCB410H: Applied Bioinformatics course at the University of Toronto, Toronto, CANADA. `SeuratToGO` welcomes issues, enhancement requests, and other contributions. To submit an issue, use the [GitHub issues](https://github.com/anjalisilva/SeuratToGO/issues). Many thanks to those who provided feedback to improve this package.
