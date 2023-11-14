@@ -50,10 +50,14 @@ The author of the package is Dien Nguyen. The author wrote all 5 functions menti
  - Butler A, Hoffman P, Smibert P, Papalexi E, Satija R. 2018. Integrating single-cell transcriptomic data across different conditions, technologies, and species. Nat Biotechnol. 36(5):411–420. doi:10.1038/nbt.4096.
 
  - Kolde R. 2019. Pheatmap: pretty heatmaps. https://github.com/raivokolde/pheatmap
+ 
+ - R Core Team. 2023. R: A language and environment for statistical computing. R Foundation for Statistical Computing, Vienna, Austria. https://www.R-project.org/
 
  - Sherman BT, Hao M, Qiu J, Jiao X, Baseler MW, Lane HC, Imamichi T, Chang W. 2022. DAVID: a web server for functional enrichment analysis and functional annotation of gene lists (2021 update). Nucleic Acids Res. 50(W1):W216–W221. doi:10.1093/nar/gkac194.
 
  - Stuart T, Butler A, Hoffman P, Hafemeister C, Papalexi E, Mauck WM, Hao Y, Stoeckius M, Smibert P, Satija R. 2019. Comprehensive Integration of Single-Cell Data. Cell. 177(7):1888-1902.e21. doi:10.1016/j.cell.2019.05.031.
+
+ - - Wickham, H., Bryan, J. 2019. *R Packages* (2nd edition). Newton, Massachusetts: O'Reilly Media. https://r-pkgs.org/
 
  - Wickham H, François R, Henry L, Müller K, Vaughan D. 2023. dplyr: A Grammar of Data Manipulation. https://dplyr.tidyverse.org, https://github.com/tidyverse/dplyr.
 
