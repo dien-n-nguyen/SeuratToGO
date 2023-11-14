@@ -64,14 +64,12 @@ head(top_all)
 
 Finally, we can visualize the top processes using a simple heat map. The `top_processes_heatmap` function takes the log2 value of each P-value, so that variations are more distinguishable, since differences in P-values can be extremely small. 
 ```{r}
-top_plot <- top_processes_heatmap(top_processes_df = top_all)
+# this function automatically saves the plot to your working directory
+# you can adjust width and height to fit the whole plot
+top_plot <- top_processes_heatmap(top_processes_df = top_all,
+                                  width = 12, 
+                                  height = 6)
 
-# save the plot into your working directory
-# you can adjust the width and height to fit different size plots
-ggplot2::ggsave(filename = "top_processes_heatmap.png", 
-                plot = top_plot,
-                width = 12,
-                height = 6)
 ```
 
 
