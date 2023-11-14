@@ -5,11 +5,11 @@ Title: A package to prepare post-Seurat analysis dataframes for DAVID Gene
 Version: 0.1.0
 Author: Dien Nguyen
 Maintainer: Dien Nguyen <dien.nguyen@mail.utoronto.ca>
-Description: The package processes single-cell RNA sequencing dataframes that 
-  have undergone clustering by Seurat (R package), and clusters have been 
-  labelled. This package reformats post-Seurat dataframes to go through GO
-  analysis using DAVID (Database for Annotation, Visualization and Integrated 
-  Discovery). It also provides functions for analysis of DAVID output files.
+Description: The package processes Seurat's differential expression markers 
+  (after running FindAllMarkers() function in Seurat). This package reformats 
+  post-Seurat dataframes to go through GO analysis using DAVID (Database for 
+  Annotation, Visualization and Integrated Discovery). It also provides 
+  functions for analysis of DAVID output files.
 Imports:
     dplyr,
     magrittr,
