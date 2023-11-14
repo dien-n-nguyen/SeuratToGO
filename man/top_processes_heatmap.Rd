@@ -4,13 +4,17 @@
 \alias{top_processes_heatmap}
 \title{Produce a heatmap of the top processes}
 \usage{
-top_processes_heatmap(top_processes_df, cellwidth = 30)
+top_processes_heatmap(top_processes_df, width = 12, height = 6, cellwidth = 30)
 }
 \arguments{
 \item{top_processes_df}{A data frame containing the top processes of each
 cluster. The rownames should be the processes and the column names should
 be the cluster. It can be produced using the get_all_top_processes function
 in the package.}
+
+\item{width}{The width of the output file}
+
+\item{height}{The height of the output file}
 
 \item{cellwidth}{The cell width for each cell in the heatmap.}
 }
@@ -19,5 +23,6 @@ A heatmap that represents the top processes in each cluster.
 }
 \description{
 This function creates and returns a heatmap showing the top processes in each
-cluster.
+cluster. It automatically saves the plot as a .png file in the current
+working directory.
 }
