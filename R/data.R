@@ -20,7 +20,5 @@
 #'  \item{gene}{The gene}
 #'  }
 #'  @examples
-#'  \dontrun{
 #'  pbmc_markers
-#'  }
 "pbmc_markers"
