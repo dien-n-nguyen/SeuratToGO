@@ -15,6 +15,16 @@
 #'
 #' @export
 get_all_top_processes <- function(combined_list, benjamini, top_n) {
+  # check that benjamini is greater than 0
+  if (benjamini <= 0) {
+    stop("Error: benjamini number provided must be a positive number.")
+  }
+
+  # check that top_n is greater than 0
+  if (top_n <= 0 || is.numeric(top_n) == FALSE) {
+    stop("Error: top_n provided must be a positive integer.")
+  }
+
   all_top_processes <- c()
   num_clusters <- length(combined_list)
   cluster_top_dfs <- list()
@@ -40,7 +50,7 @@ get_all_top_processes <- function(combined_list, benjamini, top_n) {
   for (i in 1:length(cluster_top_dfs)) {
     curr_df <- cluster_top_dfs[[i]]
     apply(curr_df, 1, function(x) {
-      top_processes_df[x["Term"], column_names[i]] <<- x["PValue"]
+      top_processes_df[x["Term"], column_names[i]] <<- as.numeric(x["PValue"])
     })
   }
   return(top_processes_df)
