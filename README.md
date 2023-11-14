@@ -65,6 +65,9 @@ tutorial. It also contains a zip folder called `david.zip` in
 `inst/extdata/` that contains example DAVID output files for users to
 use when following the vignette.
 
+An overview of the package is illustrated below. See the vignettes for
+more details. ![](./inst/extdata/overview_diagram.jpeg)
+
 ## Contributions
 
 The author of the package is Dien Nguyen. The author wrote all 5
@@ -122,5 +125,5 @@ This package was developed as part of an assessment for 2019-2023
 BCB410H: Applied Bioinformatics course at the University of Toronto,
 Toronto, CANADA. `SeuratToGO` welcomes issues, enhancement requests, and
 other contributions. To submit an issue, use the [GitHub
-issues](https://github.com/anjalisilva/SeuratToGO/issues). Many thanks
+issues](https://github.com/dien-n-nguyen/SeuratToGO/issues). Many thanks
 to those who provided feedback to improve this package.
