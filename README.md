@@ -29,7 +29,7 @@ You can install the development version of SeuratToGO from
 ``` r
 install.packages("devtools")
 library("devtools")
-devtools::install_github("dien-n-nguyen/SeuratToGO")
+devtools::install_github("dien-n-nguyen/SeuratToGO", build_vignettes = TRUE)
 library("SeuratToGO")
 ```
 
