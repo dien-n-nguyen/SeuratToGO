@@ -17,6 +17,28 @@
 #'
 #' @export
 get_top_processes <- function(combined_list, cluster, benjamini = 0.05, top_n) {
+
+  # check that cluster provided is a non-negative integer
+  if (cluster < 0 || is.numeric(cluster) == FALSE) {
+    stop("Error: cluster number provided must be a non-negative integer.")
+  }
+
+  # check that cluster provided is in the range of combined_list
+  if (cluster >= length(combined_list)) {
+    stop("Error: cluster number provided must be smaller than the length of
+         combined_list.")
+  }
+
+  # check that benjamini is greater than 0
+  if (benjamini <= 0) {
+    stop("Error: benjamini number provided must be a positive number.")
+  }
+
+  # check that top_n is greater than 0
+  if (top_n <= 0 || is.numeric(top_n) == FALSE) {
+    stop("Error: top_n provided must be a positive integer.")
+  }
+
   curr_df <- combined_list[[cluster + 1]]
 
   # sort data frame from smallest to largest PValue
