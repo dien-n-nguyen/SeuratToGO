@@ -6,6 +6,7 @@
 ## Description
 The package processes Seurat's differential expression markers (after running FindAllMarkers() function in Seurat). This package reformats the to go through GO analysis using DAVID (Database for Annotation, Visualization and Integrated Discovery). It also provides functions for analysis of DAVID output files. Currently, users have to manually separate the clusters in Seurat's markers dataframe using Excel and export it as a tab-delimited text file to upload to DAVID. They then have to manually combine all the DAVID output files (one for each clusters) to do further analysis. The R package includes the main components: DESCRIPTION, NAMESPACE, man subdirectory and R subdirectory. Additionally, LICENSE, README and subdirectories vignettes, tests, data and inst are also explored.
 The `SeuratToGO` package was developed using `R version 4.3.1 (2023-06-16 ucrt)`, `Platform: x86_64-w64-mingw32/x64 (64-bit)` and `Running under: Windows 11 x64 (build 22621)`.
+
 ## Installation
 
 You can install the development version of SeuratToGO from [GitHub](https://github.com/) with:
