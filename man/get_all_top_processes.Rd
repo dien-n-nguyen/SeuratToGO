@@ -20,8 +20,29 @@ threshold will be kept. The default value is 0.05.}
 }
 \value{
 A data frame with the top_n top processes for each cluster, combined.
+The row names are the all the top_n processes, and the column names are the
+clusters.
 }
 \description{
 This function finds the top processes identified for each cluster and compile
 them into one data frame.
+}
+\examples{
+\dontrun{
+library(SeuratToGO)
+combined_list <- combine_david_files("./david")
+get_all_top_processes(combined_list, benjamini = 0.05, top_n = 5)
+}
+
+}
+\references{
+Sherman BT, Hao M, Qiu J, Jiao X, Baseler MW, Lane HC, Imamichi T, Chang W.
+2022. DAVID: a web server for functional enrichment analysis and functional
+annotation of gene lists (2021 update). \emph{Nucleic Acids Res}.
+50(W1):W216–W221. \href{"https://pubmed.ncbi.nlm.nih.gov/35325185/"}{Link}
+
+Benjamini Y, Hochberg Y. 1995. Controlling the False Discovery Rate: A
+Practical and Powerful Approach to Multiple Testing. \emph{Journal of the
+Royal Statistical Society: Series B (Methodological).} 57(1):289–300.
+\href{"https://rss.onlinelibrary.wiley.com/doi/10.1111/j.2517-6161.1995.tb02031.x"}{Link}
 }

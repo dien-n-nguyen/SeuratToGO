@@ -10,10 +10,28 @@ separate_clusters(markers)
 \item{markers}{A data frame of gene markers with columns "cluster" and "gene".}
 }
 \value{
-A data frame of gene markets with cluster number as column name.
+A data frame of gene markers with cluster number as column name.
 }
 \description{
 This function separates the genes based on their cluster, and labels the
 the column name as the cluster number. It also exports the data frame as a
 tab-delimited text file so it can be uploaded onto the DAVID Website.
+}
+\examples{
+\dontrun{
+library(SeuratToGO)
+separate_clusters(pbmc_markers)
+}
+
+}
+\references{
+Stuart T, Butler A, Hoffman P, Hafemeister C, Papalexi E, Mauck WM, Hao Y,
+Stoeckius M, Smibert P, Satija R. 2019. Comprehensive Integration of
+Single-Cell Data. \emph{Cell}. 177(7):1888-1902.e21.
+\href{"https://pubmed.ncbi.nlm.nih.gov/31178118/"}{Link}
+
+Sherman BT, Hao M, Qiu J, Jiao X, Baseler MW, Lane HC, Imamichi T, Chang W.
+2022. DAVID: a web server for functional enrichment analysis and functional
+annotation of gene lists (2021 update). \emph{Nucleic Acids Res}.
+50(W1):W216–W221. \href{"https://pubmed.ncbi.nlm.nih.gov/35325185/"}{Link}
 }

@@ -10,6 +10,19 @@
 #' @return A list of data frames, one data frame for each cluster
 #'
 #' @export
+#'
+#' @examples
+#' \dontrun{
+#' library(SeuratToGO)
+#' combined_list <- combine_david_files("./david/")
+#' }
+#'
+#' @references
+#' Sherman BT, Hao M, Qiu J, Jiao X, Baseler MW, Lane HC, Imamichi T, Chang W.
+#' 2022. DAVID: a web server for functional enrichment analysis and functional
+#' annotation of gene lists (2021 update). \emph{Nucleic Acids Res}.
+#' 50(W1):W216–W221. \href{https://pubmed.ncbi.nlm.nih.gov/35325185/}{Link}
+
 combine_david_files <- function(path_to_folder) {
   file_list <- list.files(path = path_to_folder)
   david_list <- list()

@@ -19,3 +19,16 @@ A list of data frames, one data frame for each cluster
 This function reads and combines text files produced by DAVID's annotation
 chart into a list of data frames, one data frame for each file (each cluster)
 }
+\examples{
+\dontrun{
+library(SeuratToGO)
+combined_list <- combine_david_files("./david/")
+}
+
+}
+\references{
+Sherman BT, Hao M, Qiu J, Jiao X, Baseler MW, Lane HC, Imamichi T, Chang W.
+2022. DAVID: a web server for functional enrichment analysis and functional
+annotation of gene lists (2021 update). \emph{Nucleic Acids Res}.
+50(W1):W216–W221. \href{https://pubmed.ncbi.nlm.nih.gov/35325185/}{Link}
+}

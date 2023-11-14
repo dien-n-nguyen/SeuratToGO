@@ -23,11 +23,32 @@ get_cluster_names <- function(num_clusters) {
 #' tab-delimited text file so it can be uploaded onto the DAVID Website.
 #'
 #' @param markers A data frame of gene markers with columns "cluster" and "gene".
-#' @return A data frame of gene markets with cluster number as column name.
+#' @return A data frame of gene markers with cluster number as column name.
+#'
+#'
+#' @references
+#' Stuart T, Butler A, Hoffman P, Hafemeister C, Papalexi E, Mauck WM, Hao Y,
+#' Stoeckius M, Smibert P, Satija R. 2019. Comprehensive Integration of
+#' Single-Cell Data. \emph{Cell}. 177(7):1888-1902.e21.
+#' \href{"https://pubmed.ncbi.nlm.nih.gov/31178118/"}{Link}
+#'
+#' Sherman BT, Hao M, Qiu J, Jiao X, Baseler MW, Lane HC, Imamichi T, Chang W.
+#' 2022. DAVID: a web server for functional enrichment analysis and functional
+#' annotation of gene lists (2021 update). \emph{Nucleic Acids Res}.
+#' 50(W1):W216–W221. \href{"https://pubmed.ncbi.nlm.nih.gov/35325185/"}{Link}
+#'
+#'
+#' @examples
+#' \dontrun{
+#' library(SeuratToGO)
+#' separate_clusters(pbmc_markers)
+#' }
 #'
 #' @export
 #' @import magrittr
 #' @import dplyr
+
+
 separate_clusters <- function(markers) {
   markers_df <- data.frame(markers)
 

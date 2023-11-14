@@ -18,9 +18,7 @@ gene expression levels of this gene in different clusters}
 \item{gene}{The gene}
 }
 @examples
-\dontrun{
- pbmc_markers
- }
+pbmc_markers
 }
 \source{
 Seurat Tutorial by Satija Lab. The raw data is provided here:

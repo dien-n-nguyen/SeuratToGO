@@ -26,3 +26,11 @@ This function creates and returns a heatmap showing the top processes in each
 cluster. It automatically saves the plot as a .png file in the current
 working directory.
 }
+\examples{
+\dontrun{
+library(SeuratToGO)
+combined_list <- combine_david_files("./david")
+top_df <- get_all_top_processes(combined_list, benjamini = 0.05, top_n = 5)
+top_processes_heatmap(top_df)
+}
+}

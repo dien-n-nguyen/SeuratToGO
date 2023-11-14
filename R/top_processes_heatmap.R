@@ -15,6 +15,14 @@
 #'
 #' @export
 #' @import pheatmap
+#'
+#' @examples
+#' \dontrun{
+#' library(SeuratToGO)
+#' combined_list <- combine_david_files("./david")
+#' top_df <- get_all_top_processes(combined_list, benjamini = 0.05, top_n = 5)
+#' top_processes_heatmap(top_df)
+#' }
 
 top_processes_heatmap <- function(top_processes_df, width = 12, height = 6,
                                   cellwidth = 30) {
