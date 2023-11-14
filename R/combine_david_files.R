@@ -16,6 +16,18 @@ combine_david_files <- function(path_to_folder) {
   for (i in 1:length(file_list)){
     file_path <- paste0(path_to_folder, file_list[[i]])
     curr_df <- read.table(file_path, header = TRUE, sep = "\t")
+
+    # check that data frame has correct columns
+    desired_columns = c("Category", "Term", "Count", "X.", "PValue",
+                        "Genes", "List.Total", "Pop.Hits", "Pop.Total",
+                        "Fold.Enrichment", "Bonferroni", "Benjamini",
+                        "FDR")
+    if (!all(desired_columns %in% colnames(curr_df))) {
+      stop("Error: Check that the DAVID file has these columns: Category, Term,
+           Count, X., PValue, Genes, List.Total, Pop.Hits, Pop.Total,
+           Fold.Enrichment, Bonferroni, Benjamini, FDR.")
+    }
+
     david_list[[i]] <- curr_df
   }
   return(david_list)
