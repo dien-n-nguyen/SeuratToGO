@@ -57,7 +57,7 @@ The author of the package is Dien Nguyen. The author wrote all 5 functions menti
 
  - Stuart T, Butler A, Hoffman P, Hafemeister C, Papalexi E, Mauck WM, Hao Y, Stoeckius M, Smibert P, Satija R. 2019. Comprehensive Integration of Single-Cell Data. Cell. 177(7):1888-1902.e21. doi:10.1016/j.cell.2019.05.031.
  
- - Wickham, H., Bryan, J. 2019. *R Packages* (2nd edition). Newton, Massachusetts: O'Reilly Media. https://r-pkgs.org/
+ - Wickham H, Bryan, J. 2019. *R Packages* (2nd edition). Newton, Massachusetts: O'Reilly Media. https://r-pkgs.org/
 
  - Wickham H, François R, Henry L, Müller K, Vaughan D. 2023. dplyr: A Grammar of Data Manipulation. https://dplyr.tidyverse.org, https://github.com/tidyverse/dplyr.
 
