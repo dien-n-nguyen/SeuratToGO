@@ -29,12 +29,12 @@
 #' Sherman BT, Hao M, Qiu J, Jiao X, Baseler MW, Lane HC, Imamichi T, Chang W.
 #' 2022. DAVID: a web server for functional enrichment analysis and functional
 #' annotation of gene lists (2021 update). \emph{Nucleic Acids Res}.
-#' 50(W1):W216–W221. \href{"https://pubmed.ncbi.nlm.nih.gov/35325185/"}{Link}
+#' 50(W1):W216–W221. \href{https://pubmed.ncbi.nlm.nih.gov/35325185/}{Link}
 #'
 #' Benjamini Y, Hochberg Y. 1995. Controlling the False Discovery Rate: A
 #' Practical and Powerful Approach to Multiple Testing. \emph{Journal of the
 #' Royal Statistical Society: Series B (Methodological).} 57(1):289–300.
-#' \href{"https://rss.onlinelibrary.wiley.com/doi/10.1111/j.2517-6161.1995.tb02031.x"}{Link}
+#' \href{https://rss.onlinelibrary.wiley.com/doi/10.1111/j.2517-6161.1995.tb02031.x}{Link}
 #'
 get_all_top_processes <- function(combined_list, benjamini, top_n) {
   # check that benjamini is greater than 0
