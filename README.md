@@ -65,7 +65,9 @@ tutorial. It also contains a zip folder called `david.zip` in
 `inst/extdata/` that contains example DAVID output files for users to
 use when following the vignette.
 
-An overview of the package is illustrated below. See the vignettes for
+An overview of the package is illustrated below. The steps highlighted
+yellow are not supported by this package, since DAVID’s API does not
+support the type of gene IDs we are working with. See the vignette for
 more details. ![](./inst/extdata/overview_diagram.png)
 
 ## Contributions
