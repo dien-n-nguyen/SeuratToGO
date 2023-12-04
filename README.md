@@ -66,7 +66,7 @@ tutorial. It also contains a zip folder called `david.zip` in
 use when following the vignette.
 
 An overview of the package is illustrated below. See the vignettes for
-more details. ![](./inst/extdata/overview_diagram.jpeg)
+more details. ![](./inst/extdata/overview_diagram.png)
 
 ## Contributions
 
