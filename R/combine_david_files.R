@@ -24,6 +24,13 @@
 #' 50(W1):W216–W221. \href{https://pubmed.ncbi.nlm.nih.gov/35325185/}{Link}
 
 combine_david_files <- function(path_to_folder) {
+
+  # account for users forgetting to add the forward slash to path
+  last_char <- substr(path_to_folder, nchar(path_to_folder), nchar(path_to_folder))
+  if (last_char != "/") {
+    path_to_folder <- paste0(path_to_folder, "/")
+  }
+
   file_list <- list.files(path = path_to_folder)
   david_list <- list()
   for (i in 1:length(file_list)){
