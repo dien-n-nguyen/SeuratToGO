@@ -11,6 +11,8 @@
 #' @param width The width of the output file
 #' @param height The height of the output file
 #' @param cellwidth The cell width for each cell in the heatmap.
+#' @param save TRUE if the user wants to save the plot as a png image file. The
+#' default value is FALSE.
 #' @return A heatmap that represents the top processes in each cluster.
 #'
 #' @export
@@ -19,13 +21,22 @@
 #' @examples
 #' \dontrun{
 #' library(SeuratToGO)
-#' combined_list <- combine_david_files("./david")
-#' top_df <- get_all_top_processes(combined_list, benjamini = 0.05, top_n = 5)
+#' david_file_path = system.file("extdata", "david", package = "SeuratToGO")
+#' # this is where DAVID output files are stored in this package
+#' # when using your own files, you must provide the file path to the folder
+#' # where you saved them
+#'
+#' combined_list <- combine_david_files(david_file_path)
+#' top_processes <- get_all_top_processes(combined_list)
 #' top_processes_heatmap(top_df)
+#' # you should see a heat map in the plot window
+#'
+#' top_processes_heatmap(top_df, save = TRUE)
+#' # if you want to save the plot in your current directory, set save to TRUE
 #' }
 
 top_processes_heatmap <- function(top_processes_df, width = 12, height = 6,
-                                  cellwidth = 30) {
+                                  cellwidth = 30, save = FALSE) {
   # check that cellwidth is > 0
   if (cellwidth <= 0) {
     stop("Cellwidth provided must be greater than 0.")
@@ -50,16 +61,28 @@ top_processes_heatmap <- function(top_processes_df, width = 12, height = 6,
   log2_df[log2_df == -Inf] <- 0
   my_palette <- colorRampPalette(c("blue", "white"))(100)
 
-  heatmap_plot <- pheatmap::pheatmap(log2_df,
-                           color = my_palette,
-                           cluster_rows = F,
-                           cluster_cols = F,
-                           border_color = "black",
-                           cellwidth = cellwidth,
-                           main = "Heatmap of top processes of each cluster",
-                           filename = "./top_process_heatmap.png",
-                           width = width,
-                           height = height)
+  if (save == TRUE) {
+    heatmap_plot <- pheatmap::pheatmap(log2_df,
+                                       color = my_palette,
+                                       cluster_rows = F,
+                                       cluster_cols = F,
+                                       border_color = "black",
+                                       cellwidth = cellwidth,
+                                       main = "Heatmap of top processes of each cluster",
+                                       filename = "./top_process_heatmap.png",
+                                       width = width,
+                                       height = height)
+  } else {
+    heatmap_plot <- pheatmap::pheatmap(log2_df,
+                                       color = my_palette,
+                                       cluster_rows = F,
+                                       cluster_cols = F,
+                                       border_color = "black",
+                                       cellwidth = cellwidth,
+                                       main = "Heatmap of top processes of each cluster",
+                                       width = width,
+                                       height = height)
+  }
   return(heatmap_plot)
 }
 # [END]

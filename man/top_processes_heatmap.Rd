@@ -4,7 +4,13 @@
 \alias{top_processes_heatmap}
 \title{Produce a heatmap of the top processes}
 \usage{
-top_processes_heatmap(top_processes_df, width = 12, height = 6, cellwidth = 30)
+top_processes_heatmap(
+  top_processes_df,
+  width = 12,
+  height = 6,
+  cellwidth = 30,
+  save = FALSE
+)
 }
 \arguments{
 \item{top_processes_df}{A data frame containing the top processes of each
@@ -17,6 +23,9 @@ in the package.}
 \item{height}{The height of the output file}
 
 \item{cellwidth}{The cell width for each cell in the heatmap.}
+
+\item{save}{TRUE if the user wants to save the plot as a png image file. The
+default value is FALSE.}
 }
 \value{
 A heatmap that represents the top processes in each cluster.
@@ -29,8 +38,17 @@ working directory.
 \examples{
 \dontrun{
 library(SeuratToGO)
-combined_list <- combine_david_files("./david")
-top_df <- get_all_top_processes(combined_list, benjamini = 0.05, top_n = 5)
+david_file_path = system.file("extdata", "david", package = "SeuratToGO")
+# this is where DAVID output files are stored in this package
+# when using your own files, you must provide the file path to the folder
+# where you saved them
+
+combined_list <- combine_david_files(david_file_path)
+top_processes <- get_all_top_processes(combined_list)
 top_processes_heatmap(top_df)
+# you should see a heat map in the plot window
+
+top_processes_heatmap(top_df, save = TRUE)
+# if you want to save the plot in your current directory, set save to TRUE
 }
 }
