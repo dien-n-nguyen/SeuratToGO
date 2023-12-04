@@ -8,7 +8,6 @@ vignette: >
 ---
 
 ```{r, include = FALSE}
-devtools::load_all()
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
@@ -17,7 +16,7 @@ knitr::opts_chunk$set(
 
 First, you need to load the package before using any of its functions. You also
 need to install (if you have not) and load the package "magrittr".
-```{r setup, eval=FALSE}
+```{r setup}
 library(SeuratToGO)
 library(magrittr)
 ```
@@ -36,10 +35,10 @@ the Seurat package. You can do generate this data by yourself by following the
 tutorial on: https://satijalab.org/seurat/articles/pbmc3k_tutorial.html.
 ```{r}
 # view the pbmc_markers file
-head(pbmc_markers)
+head(SeuratToGO::pbmc_markers)
 
 # separate the clusters
-separated_df <- separate_clusters(pbmc_markers)
+separated_df <- SeuratToGO::separate_clusters(SeuratToGO::pbmc_markers)
 
 # run this line to view the data frame in a separate tab
 # View(separated_df)
@@ -65,7 +64,7 @@ to provide the path to the folder.
 An example of a folder containing outputs files can be downloaded from [here](https://github.com/dien-n-nguyen/SeuratToGO/blob/master/inst/extdata/david.zip). 
 ```{r}
 david_folder_path <- system.file("extdata", "david", package = "SeuratToGO")
-david_combined <- combine_david_files(david_folder_path)
+david_combined <- SeuratToGO::combine_david_files(david_folder_path)
 # david_combined <- combine_david_files("./david/")
 
 # DAVID output columns for each cluster
@@ -91,10 +90,10 @@ arranged in ordered in the `david_combined` list.
 
 ```{r}
 # find the top 5 processes in cluster 0
-cluster0_top5 <- get_top_processes(combined_list = david_combined,
-                                   cluster = 0,
-                                   benjamini = 0.05,
-                                   top_n = 5)
+cluster0_top5 <- SeuratToGO::get_top_processes(combined_list = david_combined,
+                                               cluster = 0,
+                                               benjamini = 0.05,
+                                               top_n = 5)
 
 # the different attributes associated with each process
 colnames(cluster0_top5)
@@ -122,9 +121,9 @@ The main different between the functions `get_all_top_processes` and
 processes of each cluster, while the latter shows the top processes of one
 cluster in greater detail. 
 ```{r}
-top_all <- get_all_top_processes(combined_list = david_combined,
-                                 benjamini = 0.05,
-                                 top_n = 5)
+top_all <- SeuratToGO::get_all_top_processes(combined_list = david_combined,
+                                             benjamini = 0.05,
+                                             top_n = 5)
 # run this line to view the top_all dataframe in a separate tab
 # View(top_all)
 ```
@@ -142,9 +141,9 @@ extremely small.
 ```{r}
 # this function automatically saves the plot to your working directory
 # you can adjust width and height to fit the whole plot
-top_plot <- top_processes_heatmap(top_processes_df = top_all,
-                                  width = 12, 
-                                  height = 6)
+top_plot <- SeuratToGO::top_processes_heatmap(top_processes_df = top_all,
+                                              width = 12, 
+                                              height = 6)
 
 ```
 
