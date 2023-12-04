@@ -1,7 +1,7 @@
 Package: SeuratToGO
 Type: Package
 Title: A package to prepare post-Seurat analysis dataframes for DAVID Gene 
-  Ontology (GO) analysis and analysis of DAVID output files.
+  Ontology (GO) analysis and analysis of DAVID output files
 Version: 0.1.0
 Author: Dien Nguyen
 Maintainer: Dien Nguyen <dien.nguyen@mail.utoronto.ca>

@@ -20,7 +20,11 @@ tab-delimited text file so it can be uploaded onto the DAVID Website.
 \examples{
 \dontrun{
 library(SeuratToGO)
-separate_clusters(pbmc_markers)
+separated <- separate_clusters(pbmc_markers)
+# pbmc_markers is a data frame that contains gene markers from analysis of
+# Peripheral Blood Mononuclear Cells (PBMC) using Seurat
+# To see more details, see the vignette
+View(separated)
 }
 
 }
