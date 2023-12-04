@@ -4,7 +4,7 @@
 \alias{get_top_processes}
 \title{Get the top GO processes in a cluster}
 \usage{
-get_top_processes(combined_list, cluster, benjamini = 0.05, top_n)
+get_top_processes(combined_list, cluster, benjamini = 0.05, top_n = 5)
 }
 \arguments{
 \item{combined_list}{A list of data frames (preferably the one produced by
@@ -19,7 +19,7 @@ example, 0 for cluster 0, 1 for cluster 1, and so on.}
 filtering processes. Only processes with a Benjamini value smaller than the
 threshold will be kept. The default value is 0.05.}
 
-\item{top_n}{The number of processes to return.}
+\item{top_n}{The number of processes to return. The default value is 5.}
 }
 \value{
 A data frame with the top_n top processes.
@@ -31,8 +31,23 @@ the Benjamini threshold given.
 \examples{
 \dontrun{
 library(SeuratToGO)
-combined_list <- combine_david_files("./david")
-get_top_processes(combined_list, cluster = 0, benjamini = 0.05, top_n = 5)
+david_file_path = system.file("extdata", "david", package = "SeuratToGO")
+# this is where DAVID output files are stored in this package
+# when using your own files, you must provide the file path to the folder
+# where you saved them
+combined_list <- combine_david_files(david_file_path)
+
+# get the top 5 biological processes for cluster 0
+top_5 <- get_top_processes(combined_list, cluster = 0)
+View(top_5)
+
+# get the top 10 biological processes for cluster 7 with  0.1
+# benjamini threshold
+top_10 <- get_top_processes(combined_list,
+                                   cluster = 0,
+                                   benjamini = 0.1,
+                                   top_n = 10)
+View(top_10)
 }
 
 }

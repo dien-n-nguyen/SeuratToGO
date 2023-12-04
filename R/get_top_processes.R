@@ -12,7 +12,7 @@
 #' @param benjamini A number that represents the Benjamini threshold for
 #' filtering processes. Only processes with a Benjamini value smaller than the
 #' threshold will be kept. The default value is 0.05.
-#' @param top_n The number of processes to return.
+#' @param top_n The number of processes to return. The default value is 5.
 #' @return A data frame with the top_n top processes.
 #'
 #' @export
@@ -21,8 +21,23 @@
 #' @examples
 #' \dontrun{
 #' library(SeuratToGO)
-#' combined_list <- combine_david_files("./david")
-#' get_top_processes(combined_list, cluster = 0, benjamini = 0.05, top_n = 5)
+#' david_file_path = system.file("extdata", "david", package = "SeuratToGO")
+#' # this is where DAVID output files are stored in this package
+#' # when using your own files, you must provide the file path to the folder
+#' # where you saved them
+#' combined_list <- combine_david_files(david_file_path)
+#'
+#' # get the top 5 biological processes for cluster 0
+#' top_5 <- get_top_processes(combined_list, cluster = 0)
+#' View(top_5)
+#'
+#' # get the top 10 biological processes for cluster 7 with  0.1
+#' # benjamini threshold
+#' top_10 <- get_top_processes(combined_list,
+#'                                    cluster = 0,
+#'                                    benjamini = 0.1,
+#'                                    top_n = 10)
+#' View(top_10)
 #' }
 #'
 #' @references
@@ -37,7 +52,7 @@
 #' \href{https://rss.onlinelibrary.wiley.com/doi/10.1111/j.2517-6161.1995.tb02031.x}{Link}
 
 
-get_top_processes <- function(combined_list, cluster, benjamini = 0.05, top_n) {
+get_top_processes <- function(combined_list, cluster, benjamini = 0.05, top_n = 5) {
 
   # check that cluster provided is a non-negative integer
   if (cluster < 0 || is.numeric(cluster) == FALSE) {
