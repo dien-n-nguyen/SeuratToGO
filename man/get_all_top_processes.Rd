@@ -4,7 +4,7 @@
 \alias{get_all_top_processes}
 \title{Get the p-value for the top processes of all clusters}
 \usage{
-get_all_top_processes(combined_list, benjamini, top_n)
+get_all_top_processes(combined_list, benjamini = 0.05, top_n = 5)
 }
 \arguments{
 \item{combined_list}{A list of data frames (preferably the one produced by
@@ -16,7 +16,8 @@ second data frame is cluster 1, and so on.}
 filtering processes. Only processes with a Benjamini value smaller than the
 threshold will be kept. The default value is 0.05.}
 
-\item{top_n}{The number of processes to identify for each cluster.}
+\item{top_n}{The number of processes to identify for each cluster. The
+default value is 5}
 }
 \value{
 A data frame with the top_n top processes for each cluster, combined.
@@ -30,8 +31,13 @@ them into one data frame.
 \examples{
 \dontrun{
 library(SeuratToGO)
-combined_list <- combine_david_files("./david")
-get_all_top_processes(combined_list, benjamini = 0.05, top_n = 5)
+david_file_path = system.file("extdata", "david", package = "SeuratToGO")
+# this is where DAVID output files are stored in this package
+# when using your own files, you must provide the file path to the folder
+# where you saved them
+combined_list <- combine_david_files(david_file_path)
+top_processes <- get_all_top_processes(combined_list)
+View(top_processes)
 }
 
 }

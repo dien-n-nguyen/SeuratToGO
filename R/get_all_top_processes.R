@@ -10,7 +10,8 @@
 #' @param benjamini A number that represents the Benjamini threshold for
 #' filtering processes. Only processes with a Benjamini value smaller than the
 #' threshold will be kept. The default value is 0.05.
-#' @param top_n The number of processes to identify for each cluster.
+#' @param top_n The number of processes to identify for each cluster. The
+#' default value is 5
 #' @return A data frame with the top_n top processes for each cluster, combined.
 #' The row names are the all the top_n processes, and the column names are the
 #' clusters.
@@ -21,8 +22,13 @@
 #' @examples
 #' \dontrun{
 #' library(SeuratToGO)
-#' combined_list <- combine_david_files("./david")
-#' get_all_top_processes(combined_list, benjamini = 0.05, top_n = 5)
+#' david_file_path = system.file("extdata", "david", package = "SeuratToGO")
+#' # this is where DAVID output files are stored in this package
+#' # when using your own files, you must provide the file path to the folder
+#' # where you saved them
+#' combined_list <- combine_david_files(david_file_path)
+#' top_processes <- get_all_top_processes(combined_list)
+#' View(top_processes)
 #' }
 #'
 #' @references
@@ -36,7 +42,7 @@
 #' Royal Statistical Society: Series B (Methodological).} 57(1):289–300.
 #' \href{https://rss.onlinelibrary.wiley.com/doi/10.1111/j.2517-6161.1995.tb02031.x}{Link}
 #'
-get_all_top_processes <- function(combined_list, benjamini, top_n) {
+get_all_top_processes <- function(combined_list, benjamini = 0.05, top_n = 5) {
   # check that benjamini is greater than 0
   if (benjamini <= 0) {
     stop("Error: benjamini number provided must be a positive number.")
