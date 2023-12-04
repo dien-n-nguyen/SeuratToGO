@@ -14,7 +14,13 @@
 #' @examples
 #' \dontrun{
 #' library(SeuratToGO)
-#' combined_list <- combine_david_files("./david/")
+#' david_file_path = system.file("extdata", "david", package = "SeuratToGO")
+#' # this is where DAVID output files are stored in this package
+#' # when using your own files, you must provide the file path to the folder
+#' # where you saved them
+#' combined_list <- combine_david_files(david_file_path)
+#' View(combined_list)
+#' # see the vignette for more details
 #' }
 #'
 #' @references
