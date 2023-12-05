@@ -3,6 +3,7 @@
 export(combine_david_files)
 export(get_all_top_processes)
 export(get_top_processes)
+export(run_SeuratToGO)
 export(separate_clusters)
 export(top_processes_heatmap)
 import(dplyr)
