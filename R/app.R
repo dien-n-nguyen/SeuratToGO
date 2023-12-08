@@ -12,9 +12,19 @@ ui <- fluidPage(
       downloadButton('downloadData', 'Download'),
       tags$div(style = "height: 100px;"),
       fileInput(inputId = "filesInput",
-                label = "Upload DAVID output files (tab-delimited txt files)",
+                label = "Upload DAVID output files (tab-delimited .txt files)",
                 accept = c(".txt"),
                 multiple = TRUE),
+      numericInput(inputId = "benjamini",
+                   label = "Benjamini number threshold",
+                   value = 0.05,
+                   min = 0),
+      numericInput(inputId = "top_n",
+                   label = "Top number of processes per cluster",
+                   value = 5,
+                   min = 1),
+      actionButton(inputId = "heatmap",
+                   label = "Generate heatmap"),
       tags$div(style = "height: 250px;"),
     ),
     mainPanel(
@@ -25,7 +35,6 @@ ui <- fluidPage(
 
 server <- function(input, output, session) {
 
-  data <- reactiveVal(NULL)
   genes_list <- reactiveVal(NULL)
   ready <- reactiveVal(NULL)
   uploaded_files <- reactiveVal(NULL)
@@ -40,8 +49,32 @@ server <- function(input, output, session) {
     # data(markers_df)
   })
 
-  observeEvent(input$filesInput, {
+  observeEvent(input$heatmap, {
+    if (is.null(input$filesInput)) {
+      showModal(modalDialog(
+        title = "Error",
+        "Please upload DAVID output files",
+        easyClose = TRUE
+      ))
+    }
+    if (is.na(input$benjamini) || input$benjamini == "") {
+      showModal(modalDialog(
+        title = "Error",
+        "Please enter a threshold for benjamini value",
+        easyClose = TRUE
+      ))
+    }
+    if (is.na(input$top_n) || input$benjamini == "") {
+      showModal(modalDialog(
+        title = "Error",
+        "Please enter a number for the top number of processes per cluster",
+        easyClose = TRUE
+      ))
+    }
+    req(input$benjamini)
     req(input$filesInput)
+    req(input$top_n)
+
     # Assuming the uploaded files are in a list
     files = input$filesInput$name
     print(files)
@@ -55,8 +88,12 @@ server <- function(input, output, session) {
     file.copy(input$filesInput$datapath, file.path(dir_name, files),
               overwrite = TRUE)
     david_combined <- SeuratToGO::combine_david_files(file.path(dir_name))
-    top_processes <- SeuratToGO::get_all_top_processes(david_combined)
-    heatmap <- SeuratToGO::top_processes_heatmap(top_processes)
+    top_processes <- SeuratToGO::get_all_top_processes(david_combined,
+                                                       input$benjamini,
+                                                       input$top_n)
+    heatmap <- SeuratToGO::top_processes_heatmap(top_processes,
+                                                 input$benjamini,
+                                                 input$top_n)
     top_heatmap(heatmap)
     unlink(dir_name, recursive = TRUE)
 
@@ -78,9 +115,7 @@ server <- function(input, output, session) {
       "genes_list.txt"
     },
     content = function(file) {
-      #req(data())
       req(genes_list())
-      #separated_clusters <- SeuratToGO::separate_clusters(data())
       write.table(genes_list(), file, sep = "\t", row.names = FALSE,
                   quote = FALSE)
     }
