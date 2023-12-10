@@ -1,0 +1,9 @@
+bibentry(
+  bibtype = "Manual",
+  title    = "SeuratToGO: a semi-pipeline to perform and visualize gene ontology
+  analysis using Seurat-generated data",
+  author   = "Dien Nguyen",
+  year     = "2023",
+  url = "https://github.com/dien-n-nguyen/SeuratToGO"
+)
+
