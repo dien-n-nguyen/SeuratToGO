@@ -40,16 +40,18 @@ server <- function(input, output, session) {
   uploaded_files <- reactiveVal(NULL)
   top_heatmap <- reactiveVal(NULL)
 
+  # file input trigger
   observeEvent(input$markersInput, {
     shiny::req(input$markersInput)
     markers_df <- read.csv(input$markersInput$datapath)
     separated_clusters <- SeuratToGO::separate_clusters(markers_df)
     genes_list(separated_clusters)
     ready("Your file is ready to be downloaded!")
-    # data(markers_df)
   })
 
+  # when "Generate heatmap" button is clicked
   observeEvent(input$heatmap, {
+    # check that there is value input
     if (is.null(input$filesInput)) {
       showModal(modalDialog(
         title = "Error",
@@ -57,6 +59,7 @@ server <- function(input, output, session) {
         easyClose = TRUE
       ))
     }
+    # check benjamini field
     if (is.na(input$benjamini) || input$benjamini == "") {
       showModal(modalDialog(
         title = "Error",
@@ -64,6 +67,7 @@ server <- function(input, output, session) {
         easyClose = TRUE
       ))
     }
+    # check top_n field
     if (is.na(input$top_n) || input$benjamini == "") {
       showModal(modalDialog(
         title = "Error",
@@ -75,15 +79,16 @@ server <- function(input, output, session) {
     req(input$filesInput)
     req(input$top_n)
 
-    # Assuming the uploaded files are in a list
+    # Uploaded files are in a list
     files = input$filesInput$name
-    print(files)
     uploaded_files(files)
+
 
     dir_name <- "david"
     if (dir.exists(dir_name)) {
       unlink(dir_name, recursive = TRUE)
     }
+    # create temp directory to put uploaded DAVID files
     dir.create(dir_name, showWarnings = FALSE)
     file.copy(input$filesInput$datapath, file.path(dir_name, files),
               overwrite = TRUE)
@@ -95,6 +100,7 @@ server <- function(input, output, session) {
                                                  input$benjamini,
                                                  input$top_n)
     top_heatmap(heatmap)
+    # delete temp directory so next call is not affected
     unlink(dir_name, recursive = TRUE)
 
   })
@@ -106,7 +112,6 @@ server <- function(input, output, session) {
 
   output$heatmap <- renderPlot({
     req(top_heatmap())
-    # Display a summary of the uploaded files
     top_heatmap()
   })
 
