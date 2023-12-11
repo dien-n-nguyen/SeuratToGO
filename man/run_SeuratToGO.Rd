@@ -9,3 +9,8 @@ run_SeuratToGO()
 \description{
 This function runs the package's Shiny App
 }
+\examples{
+# SeuratToGO::run_SeuratToGO()
+
+
+}

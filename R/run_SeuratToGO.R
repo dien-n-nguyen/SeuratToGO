@@ -4,6 +4,10 @@
 #' @importFrom shiny shinyAppDir
 #' @importFrom shiny runApp
 #'
+#' @examples
+#' # SeuratToGO::run_SeuratToGO()
+#'
+#'
 #' @export
 
 run_SeuratToGO <- function() {
