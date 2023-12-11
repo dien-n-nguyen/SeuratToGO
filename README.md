@@ -30,7 +30,7 @@ The R package includes the main components: DESCRIPTION, NAMESPACE, man
 subdirectory and R subdirectory. Additionally, LICENSE, README and
 subdirectories vignettes, tests, data and inst are also explored. The
 `SeuratToGO` package was developed using
-`R version 4.3.1 (2023-06-16 ucrt)`,
+`R version 4.3.2 (2023-10-31 ucrt)`,
 `Platform: x86_64-w64-mingw32/x64 (64-bit)` and
 `Running under: Windows 11 x64 (build 22621)`.
 
