@@ -10,7 +10,7 @@ ui <- fluidPage(
       textOutput(outputId = "downloadReady"),
       br(),
       downloadButton('downloadData', 'Download'),
-      tags$div(style = "height: 100px;"),
+      tags$div(style = "height: 80px;"),
       fileInput(inputId = "filesInput",
                 label = "Upload DAVID output files (tab-delimited .txt files)",
                 accept = c(".txt"),
@@ -42,11 +42,31 @@ server <- function(input, output, session) {
 
   # file input trigger
   observeEvent(input$markersInput, {
+    file_type <- tools::file_ext(input$markersInput$name)
+    allowed_types <- c("csv")
+    # check if correct file type is uploaded
+    if (file_type != "csv") {
+      showModal(modalDialog(
+        title = "Error",
+        "Please upload a CSV file",
+        footer = modalButton("OK")
+      ))
+    } else {
     shiny::req(input$markersInput)
     markers_df <- read.csv(input$markersInput$datapath)
-    separated_clusters <- SeuratToGO::separate_clusters(markers_df)
-    genes_list(separated_clusters)
-    ready("Your file is ready to be downloaded!")
+    tryCatch(expr = {
+      separated_clusters <- SeuratToGO::separate_clusters(markers_df)
+      genes_list(separated_clusters)
+      ready("Your file is ready to be downloaded!")
+    }, error = function(e) {
+      showModal(modalDialog(
+        title = "Error",
+        "An error occurred:",
+        tags$pre(e$message),
+        footer = modalButton("OK")
+      ))
+    })
+    }
   })
 
   # when "Generate heatmap" button is clicked
@@ -92,14 +112,24 @@ server <- function(input, output, session) {
     dir.create(dir_name, showWarnings = FALSE)
     file.copy(input$filesInput$datapath, file.path(dir_name, files),
               overwrite = TRUE)
-    david_combined <- SeuratToGO::combine_david_files(file.path(dir_name))
-    top_processes <- SeuratToGO::get_all_top_processes(david_combined,
-                                                       input$benjamini,
-                                                       input$top_n)
-    heatmap <- SeuratToGO::top_processes_heatmap(top_processes,
-                                                 input$benjamini,
-                                                 input$top_n)
-    top_heatmap(heatmap)
+    tryCatch(
+        expr = {
+        david_combined <- SeuratToGO::combine_david_files(file.path(dir_name))
+        top_processes <- SeuratToGO::get_all_top_processes(david_combined,
+                                                           input$benjamini,
+                                                           input$top_n)
+        heatmap <- SeuratToGO::top_processes_heatmap(top_processes,
+                                                     input$benjamini,
+                                                     input$top_n)
+        top_heatmap(heatmap)
+      }, error = function(e) {
+          showModal(modalDialog(
+            title = "Error",
+            "An error occurred:",
+            tags$pre(e$message),
+            footer = modalButton("OK")
+          ))
+      })
     # delete temp directory so next call is not affected
     unlink(dir_name, recursive = TRUE)
 
@@ -112,6 +142,7 @@ server <- function(input, output, session) {
 
   output$heatmap <- renderPlot({
     req(top_heatmap())
+    # Display a summary of the uploaded files
     top_heatmap()
   })
 
