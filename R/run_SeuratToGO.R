@@ -7,6 +7,7 @@
 run_SeuratToGO <- function() {
   appDir <- system.file("R",
                         package = "SeuratToGO")
-  shiny::runApp(appDir, display.mode = "normal")
+  shinyObj <- shiny::shinyAppDir(appDir)
+  shiny::runApp(shinyObj, display.mode = "normal")
   return()
 }
